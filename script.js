@@ -1,9 +1,8 @@
 const selectionButtons = document.querySelectorAll("[data-selection]");
 const finalColumn = document.querySelector("[data-final-column]");
 const yourScoreSpan = document.querySelector("[data-your-score]");
-
 // Define a const variable for the computer score span similar to the player score span above
-/*** ADD CODE HERE***/
+const computerScoreSpan = document.querySelector("[data-computer-score]");
 
 const SELECTIONS = [
   {
@@ -12,15 +11,23 @@ const SELECTIONS = [
     beats: "scissors",
   },
   // Add additional SELECTIONS
-  /*** ADD CODE HERE***/
-  /*** ADD CODE HERE***/
+  {
+    name: "paper",
+    emoji: "✋",
+    beats: "rock",
+  },
+  {
+    name:"scissors",
+    emoji:"✌️",
+    beats:"paper",
+  }
 ];
 
 selectionButtons.forEach((selectionButton) => {
   selectionButton.addEventListener("click", (e) => {
     const selectionName = selectionButton.dataset.selection;
     // Add Console log described in the README
-    /*** ADD CODE HERE***/
+    console.log(selectionName);
 
     const selection = SELECTIONS.find(
       (selection) => selection.name === selectionName
@@ -37,18 +44,19 @@ function makeSelection(selection) {
 
   const computerSelection = randomSelection();
   const yourWinner = isWinner(selection, computerSelection);
-  // Add const variable for that returns the computer as the winner
+  const computerWinner = isWinner(computerSelection, selection)
   /*** ADD CODE HERE***/
 
   // Add a function call for addSelectionResult function that displays the computer's selection
   addSelectionResult(computerSelection, computerWinner);
   /*** ADD CODE HERE***/
+  addSelectionResult(selection, yourWinner)
   
 
 
 // Add an if condition that checks if the computer is the winner AND increments its score
   if (yourWinner) incrementScore(yourScoreSpan);
-  /*** ADD CODE HERE***/
+  if(computerWinner) incrementScore(computerScoreSpan);
 }
 
 function incrementScore(scoreSpan) {
