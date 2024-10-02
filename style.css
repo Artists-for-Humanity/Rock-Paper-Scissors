@@ -2,7 +2,8 @@
 
 body {
     margin-top: 100px;
-    background-color: white;
+    background-image: url(cat-dance-dancing-cat.gif);
+    background-size: 100% 100vh;
 }
 
 .selections {
@@ -53,4 +54,11 @@ body {
   text-align: center;
   font-size: 50px;
    font-family: Acme;
+   color:white
+}
+div{
+    color: white;
+}
+.result-score{
+    color:white
 }

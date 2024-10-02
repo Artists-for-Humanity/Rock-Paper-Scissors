@@ -6,20 +6,20 @@ const computerScoreSpan = document.querySelector("[data-computer-score]");
 
 const SELECTIONS = [
   {
-    name: "rock",
-    emoji: "✊",
-    beats: "scissors",
+    name: "hide",
+    emoji: "🫣",
+    beats: "fingy",
   },
   // Add additional SELECTIONS
   {
-    name: "paper",
-    emoji: "✋",
-    beats: "rock",
+    name: "cry",
+    emoji: "🥹",
+    beats: "hide",
   },
   {
-    name:"scissors",
-    emoji:"✌️",
-    beats:"paper",
+    name:"fingy",
+    emoji:"🫵",
+    beats:"cry",
   }
 ];
 
