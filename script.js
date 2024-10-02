@@ -3,7 +3,7 @@ const finalColumn = document.querySelector("[data-final-column]");
 const yourScoreSpan = document.querySelector("[data-your-score]");
 
 // Define a const variable for the computer score span similar to the player score span above
-/*** ADD CODE HERE***/
+const computerScoreSpan = document.querySelector("[data-computer-score]");
 
 const SELECTIONS = [
   {
@@ -11,17 +11,22 @@ const SELECTIONS = [
     emoji: "✊",
     beats: "scissors",
   },
-  // Add additional SELECTIONS
-  /*** ADD CODE HERE***/
-  /*** ADD CODE HERE***/
+  {
+    name: "paper",
+    emoji: "📄",
+    beats: "rock",
+  },
+  {
+    name: "scissors",
+    emoji: "✂️",
+    beats: "paper",
+  },
 ];
 
 selectionButtons.forEach((selectionButton) => {
   selectionButton.addEventListener("click", (e) => {
     const selectionName = selectionButton.dataset.selection;
-    // Add Console log described in the README
-    /*** ADD CODE HERE***/
-
+    console.log(selectionName)
     const selection = SELECTIONS.find(
       (selection) => selection.name === selectionName
     );
@@ -39,7 +44,7 @@ function makeSelection(selection) {
   const yourWinner = isWinner(selection, computerSelection);
   // Add const variable for that returns the computer as the winner
   /*** ADD CODE HERE***/
-
+  const computerWinner = true; 
   // Add a function call for addSelectionResult function that displays the computer's selection
   addSelectionResult(computerSelection, computerWinner);
   /*** ADD CODE HERE***/
