@@ -4,23 +4,31 @@ const yourScoreSpan = document.querySelector("[data-your-score]");
 
 // Define a const variable for the computer score span similar to the player score span above
 /*** ADD CODE HERE***/
-
+//const Myscore = document.querySelector("[data-your-score]");
+const Computerscore = document.querySelector("[data-computer-score]");
 const SELECTIONS = [
   {
     name: "rock",
     emoji: "✊",
     beats: "scissors",
+    
+   }, 
+  { name: "scissors",
+    emoji: "✌️",
+    beats: "paper",
+
   },
-  // Add additional SELECTIONS
-  /*** ADD CODE HERE***/
-  /*** ADD CODE HERE***/
+  { name: "paper",
+    emoji: "✋",
+    beats: "rock",
+  }
+
 ];
 
 selectionButtons.forEach((selectionButton) => {
   selectionButton.addEventListener("click", (e) => {
     const selectionName = selectionButton.dataset.selection;
-    // Add Console log described in the README
-    /*** ADD CODE HERE***/
+  
 
     const selection = SELECTIONS.find(
       (selection) => selection.name === selectionName
@@ -29,16 +37,38 @@ selectionButtons.forEach((selectionButton) => {
   });
 });
 
-function makeSelection(selection) {
+function makeSelection(playerselection) {
+  console.log(playerselection.beats)
   // Clear previous result elements
   document
     .querySelectorAll(".result-selection")
     .forEach((result) => result.remove());
+  console.log(parseInt(yourScoreSpan.innerHTML))
+  let computerSelection
+  if ((parseInt(yourScoreSpan.innerHTML) - parseInt(Computerscore.innerHTML)) > -100){
+    console.log("initiate hackz")
+    // When initiate hackz computer looks at player's selection
+    console.log(playerselection.name)
+    // picks the name that includes what beats the player's selected name 
+    computerSelection = SELECTIONS
+    for (let optionAddress in SELECTIONS) {
+      let option = SELECTIONS[optionAddress];
+      if (playerselection.name === option.beats){
 
-  const computerSelection = randomSelection();
-  const yourWinner = isWinner(selection, computerSelection);
-  // Add const variable for that returns the computer as the winner
-  /*** ADD CODE HERE***/
+        computerSelection = option
+      }
+    } 
+  } 
+  else { computerSelection = randomSelection();
+  }
+
+  
+  
+  const yourWinner = isWinner(playerselection, computerSelection);
+  
+  
+  const computerWinner = iscomputerWinner(computerSelection, playerselection);
+  
 
   // Add a function call for addSelectionResult function that displays the computer's selection
   addSelectionResult(computerSelection, computerWinner);
@@ -48,7 +78,7 @@ function makeSelection(selection) {
 
 // Add an if condition that checks if the computer is the winner AND increments its score
   if (yourWinner) incrementScore(yourScoreSpan);
-  /*** ADD CODE HERE***/
+  if (computerWinner) incrementScore(Computerscore);
 }
 
 function incrementScore(scoreSpan) {
@@ -63,8 +93,12 @@ function addSelectionResult(selection, winner) {
   finalColumn.after(div);
 }
 
-function isWinner(selection, opponentSelection) {
-  return selection.beats === opponentSelection.name;
+function isWinner(playerselection, computerSelection) {
+  return playerselection.beats === computerSelection.name;
+}
+
+function iscomputerWinner(computerSelection, playerselection) {
+  return computerSelection.beats === playerselection.name;
 }
 
 function randomSelection() {
